@@ -11,10 +11,14 @@ const app = props => {
             {name: 'Rehan2', age: 27},
             {name: 'Rehan3', age: 28},
         ],
+    });
+
+    const [otherState, setOtherState] = useState({
         others: 'other text'
     });
 
     console.log(`personState ${JSON.stringify(personsState)}`);
+    console.log(`personState ${JSON.stringify(otherState)}`);
 
     const changeTextHandler = () => {
         console.log(`Hi`);;
@@ -25,7 +29,6 @@ const app = props => {
                 {name: 'Rehan3', age: -2},
             ]
         });
-        console.log(`updated personState ${JSON.stringify(personsState)}`);
     }
 
 
