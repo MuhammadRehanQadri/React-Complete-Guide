@@ -1,40 +1,45 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person'
 
-class App extends Component {
+const app = props => {
 
-    state = {
+    // This is the major change, rest is just fixing this operator wherever used and transforming class based component to functional one
+    const [personsState, setPersonState] = useState({
         persons: [
             {name: 'Rehan', age: 26},
             {name: 'Rehan2', age: 27},
             {name: 'Rehan3', age: 28},
-        ]
-    }
+        ],
+        others: 'other text'
+    });
 
-    changeTextHandler = () => {
+    console.log(`personState ${JSON.stringify(personsState)}`);
+
+    const changeTextHandler = () => {
         console.log(`Hi`);;
-        this.setState({
+        setPersonState({
             persons: [
                 {name: 'MRQ', age: 26},
                 {name: 'Rehan2', age: -1},
                 {name: 'Rehan3', age: -2},
             ]
-        })
+        });
+        console.log(`updated personState ${JSON.stringify(personsState)}`);
     }
 
-  render() {
+
     return (
       <div className="App">
         <h1>Hi I'm a React App</h1>
         <Person />
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-        <Person name={this.state.persons[2].name}>Content inside</Person>
-        <button onClick={this.changeTextHandler}>Change text</button>
+        <Person name={personsState.persons[0].name} age={personsState.persons[0].age}/>
+        <Person name={personsState.persons[1].name} age={personsState.persons[1].age}/>
+        <Person name={personsState.persons[2].name}>Content inside</Person>
+        <button onClick={changeTextHandler}>Change text</button>
       </div>
     );
-  }
+
 }
 
-export default App;
+export default app;
